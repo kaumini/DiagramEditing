@@ -1,20 +1,6 @@
 import { Visitor } from "./base-visitor";
 import { Shape, ShapeType, Circle, Square, Triangle } from "./types";
 
-export class ShapeKindChecker {
-    public static isTriangleShape(el: Shape) : boolean {
-        return el.type === ShapeType.TRIANGLE;
-    }
-
-    public static isCircleShape(el: Shape) : boolean {
-        return el.type === ShapeType.CIRCLE;
-    }
-
-    public static isSquareShape(el: Shape) : boolean {
-        return el.type === ShapeType.SQUARE;
-    } 
-}
-
 export function traverseNode(node: Shape, visitor: Visitor, parent?: Shape): void {
     let beginVisitFn = (visitor as any)[`beginVisit${node.kind}`];
 
