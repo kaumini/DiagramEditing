@@ -1,25 +1,25 @@
-import { Visitor } from "./base-visitor";
-import { Shape, ShapeType, Circle, Square, Triangle } from "./types";
+import { Visitor } from "./Visitors/base-visitor";
+import { Shape, ShapeType } from "./types";
 
 export class ShapeKindChecker {
-    public static isTriangleShape(el: Shape) : boolean {
-        return el.type === ShapeType.TRIANGLE;
+    public static isTriangle(node: Shape) : boolean {
+        return node.type === ShapeType.TRIANGLE;
     }
 
-    public static isCircleShape(el: Shape) : boolean {
-        return el.type === ShapeType.CIRCLE;
+    public static isCircle(node: Shape) : boolean {
+        return node.type === ShapeType.CIRCLE;
     }
 
-    public static isSquareShape(el: Shape) : boolean {
-        return el.type === ShapeType.SQUARE;
+    public static isSquareShape(node: Shape) : boolean {
+        return node.type === ShapeType.SQUARE;
     } 
 }
 
 export function traverseNode(node: Shape, visitor: Visitor, parent?: Shape): void {
-    let beginVisitFn = (visitor as any)[`beginVisit${node.kind}`];
+    let beginVisitFn = (visitor as any)[`beginVisit${node.type}`];
 
     if (!beginVisitFn) {
-        beginVisitFn = visitor.beginVisitShape;
+        beginVisitFn = visitor.beginVisitNode;
     }
 
     if (beginVisitFn) {
@@ -47,9 +47,9 @@ export function traverseNode(node: Shape, visitor: Visitor, parent?: Shape): voi
         traverseNode(childNode, visitor, node);
     });
 
-    let endVisitFn = (visitor as any)[`endVisit${node.kind}`];
+    let endVisitFn = (visitor as any)[`endVisit${node.type}`];
     if (!endVisitFn) {
-        endVisitFn = visitor.endVisitShape;
+        endVisitFn = visitor.endVisitNode;
     }
 
     if (endVisitFn) {

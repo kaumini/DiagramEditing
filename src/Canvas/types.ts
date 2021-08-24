@@ -1,15 +1,9 @@
-export interface BBox {
-    x1: number;
-    y1: number;
-    height: number;
-    width: number;
-}
+import { ShapeViewState } from './viewstates/shapeViewstate';
 
 export interface Shape {
     name: string;
     type: string;
-    visualizationData: BBox;
-    Children?: []
+    viewState: ShapeViewState;
 }
 
 export interface Triangle extends Shape {
