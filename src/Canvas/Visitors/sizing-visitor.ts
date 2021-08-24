@@ -6,7 +6,7 @@ import { SquareViewState } from "../viewstates/squareViewstate";
 import { TriangleViewState } from "../viewstates/triangleViewstate";
 
 export const DEFAULT_DIMENSION = 100;
-export const COMPONENT_HEIGHT = 25;
+export const COMPONENT_HEIGHT = 40;
 
 export class SizingVisitor implements Visitor {
 
